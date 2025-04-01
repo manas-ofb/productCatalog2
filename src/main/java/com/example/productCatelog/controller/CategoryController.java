@@ -1,22 +1,26 @@
 package com.example.productCatelog.controller;
 
 import com.example.productCatelog.dto.CategoryDto;
-import com.example.productCatelog.dto.ProductDto;
-import com.example.productCatelog.entity.Category;
+import com.example.productCatelog.repository.CategoryRepository;
 import com.example.productCatelog.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/categories")
+@RequestMapping("/api/category")
 public class CategoryController {
 
     private final CategoryService categoryService;
 
     @Autowired
-    public CategoryController(CategoryService categoryService) {
+    public CategoryController(CategoryService categoryService,
+        CategoryRepository categoryRepository) {
         this.categoryService = categoryService;
     }
 
@@ -26,8 +30,7 @@ public class CategoryController {
     }
 
     @GetMapping
-    public List<Category> getCategories() {
-        return categoryService.getCategories();
+    public Page<CategoryDto> getCategories(Pageable pageable) {
+        return categoryService.getCategories(pageable);
     }
-
 }
