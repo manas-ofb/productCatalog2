@@ -4,12 +4,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.OneToMany;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
-
-import java.util.List;
 
 @Entity
 @Data
@@ -26,5 +25,4 @@ public class Category {
 
     @OneToMany(mappedBy = "category")
     private List<Product> products;
-
 }

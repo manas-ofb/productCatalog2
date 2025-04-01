@@ -32,11 +32,13 @@ public class ProductServiceImpl implements ProductService {
         Category category = categoryRepository.findById(productDto.getCategoryId())
             .orElseThrow(() -> new RuntimeException("Category not found"));
 
-        Product product = new Product();
-        product.setName(productDto.getName());
-        product.setPrice(productDto.getPrice());
-        product.setCategory(category);
-        product = productRepository.save(product);
+        Product product = Product.Builder.product()
+            .withName(productDto.getName())
+            .withPrice(productDto.getPrice())
+            .withCategory(category)
+            .build();
+
+        productRepository.save(product);
 
         return ProductConverter.convertToDTO(product);
     }
