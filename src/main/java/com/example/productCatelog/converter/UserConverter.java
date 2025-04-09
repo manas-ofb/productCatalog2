@@ -5,6 +5,6 @@ import com.example.productCatelog.entity.User;
 
 public class UserConverter {
     public static UserDto convertToDTO(User user) {
-        return new UserDto(user.getId(), user.getNumber(), null);
+        return new UserDto(user.getId(), user.getNumber(), null, user.getPermissions());
     }
 }

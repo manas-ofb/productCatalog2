@@ -1,5 +1,7 @@
 package com.example.productCatelog.controller;
 
+import com.example.productCatelog.Annotation.CheckPermission;
+import com.example.productCatelog.Enum.Permission;
 import com.example.productCatelog.dto.CategoryDto;
 import com.example.productCatelog.repository.CategoryRepository;
 import com.example.productCatelog.service.CategoryService;
@@ -25,6 +27,7 @@ public class CategoryController {
     }
 
     @PostMapping
+    @CheckPermission(Permission.WRITE)
     public CategoryDto createCategory(@RequestBody CategoryDto categoryDto) {
         return categoryService.createCategory(categoryDto);
     }
