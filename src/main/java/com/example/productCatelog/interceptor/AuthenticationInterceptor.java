@@ -17,8 +17,6 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
         Object handler) throws Exception {
 
-        System.out.println("preHandle");
-
         // Retrieve the mobile number and token from request headers
         String mobileNumber = request.getHeader("Mobile-Number");
         String token = request.getHeader("Authorization");
@@ -38,7 +36,8 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
             response.getWriter().write("Invalid or Expired Token");
             return false;
         }
-        String trimToken = storedToken.substring(storedToken.length() - 28);
+        String trimToken =
+            storedToken.substring(storedToken.length() - (mobileNumber.length() + 25));
 
         System.out.println("storedToken: " + trimToken);
         // Validate the token

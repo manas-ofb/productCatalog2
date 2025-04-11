@@ -26,6 +26,7 @@ public class ProductController {
     }
 
     @PostMapping
+    @CheckPermission(Permission.WRITE)
     public ProductDto createProduct(@RequestBody ProductDto productDto) {
         return productService.createProduct(productDto);
     }
@@ -37,6 +38,7 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
+    @CheckPermission(Permission.READ)
     public ProductDto getProductById(@PathVariable Long id) {
         return productService.getProductById(id);
     }
