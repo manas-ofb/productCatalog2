@@ -8,4 +8,6 @@ public interface CategoryService {
     CategoryDto createCategory(CategoryDto categoryDto);
 
     Page<CategoryDto> getCategories(Pageable pageable);
+
+    CategoryDto getCategoryById(Long id);
 }
